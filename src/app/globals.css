@@ -206,8 +206,8 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 }
 
 @keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
 }
 
 @keyframes bob {
@@ -236,9 +236,11 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   will-change: transform;
 }
 
-.group:hover .animate-marquee,
-.animate-marquee:hover {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .animate-marquee,
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
 }
 
 .animate-bob {
@@ -278,9 +280,9 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   height: 36px;
 }
 
-/* Reduced motion preference */
+/* Reduced motion preference - exempt continuous tickers so they do not freeze */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *:not(.animate-marquee):not(.animate-marquee *) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

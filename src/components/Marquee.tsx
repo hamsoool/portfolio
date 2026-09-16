@@ -36,10 +36,14 @@ export default function Marquee({
     trackItems.push(...items);
   }
 
-  const renderTrack = () => (
+  const renderTrack = (trackId: string) => (
     <div
+      key={trackId}
       className="animate-marquee flex shrink-0 items-center gap-6 font-mono font-bold text-xs sm:text-sm tracking-widest uppercase pr-6"
-      style={{ animationDuration: `${speedSeconds}s` }}
+      style={{
+        animation: "marquee-scroll " + speedSeconds + "s linear infinite",
+        willChange: "transform",
+      }}
     >
       {trackItems.map((item, idx) => (
         <React.Fragment key={idx}>
@@ -57,11 +61,21 @@ export default function Marquee({
       aria-hidden="true"
       className="group bg-[var(--ink)] text-[var(--acid)] overflow-hidden border-y-2 border-[var(--ink)] select-none py-2.5 transition-colors duration-200 w-full"
     >
+      {/* Self-contained, resilient keyframe definitions immune to minifier & CSS bundle quirks */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html:
+            "@keyframes marquee-scroll { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } } " +
+            ".animate-marquee { display: flex; flex-shrink: 0; width: max-content; animation: marquee-scroll 35s linear infinite; will-change: transform; } " +
+            "@media (hover: hover) and (pointer: fine) { .group:hover .animate-marquee { animation-play-state: paused; } }",
+        }}
+      />
+
       <div className="flex w-fit">
         {/* Track 1 */}
-        {renderTrack()}
+        {renderTrack("track-1")}
         {/* Track 2: Identical twin that seamlessly follows Track 1 for infinite zero-snap looping */}
-        {renderTrack()}
+        {renderTrack("track-2")}
       </div>
     </div>
   );
