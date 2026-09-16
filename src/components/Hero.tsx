@@ -2,14 +2,18 @@
 
 import React from "react";
 import { playTypewriterClick, playVinylScratch } from "./audio";
+import { HeroStickers } from "./CollageStickers";
 
 export default function Hero() {
   return (
-    <header className="relative bg-[var(--sage)] border-b-2 border-[var(--ink)] overflow-hidden pt-6 pb-12 md:pb-20 transition-colors duration-200">
+    <header className="relative bg-[var(--sage)] border-b-2 border-[var(--ink)] overflow-hidden xl:overflow-visible pt-6 pb-12 md:pb-20 transition-colors duration-200">
+      {/* Editorial Scrapbook Framing Stickers (Telephone Cord, Black Bow, Hypnotic Stars) */}
+      <HeroStickers />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         {/* Masthead Header */}
         <div className="flex flex-wrap justify-between items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest pb-3 mb-8 md:mb-12 border-b border-dashed border-[var(--ink)]/60">
-          <span>gordon college · bsit · self-published, semi-regularly</span>
+          <span>gordon college • bsit • self-published, semi-regularly</span>
           <span className="bg-[var(--ink)] text-[var(--paper)] px-2 py-0.5 font-mono">
             vol. i / no. 001
           </span>
@@ -37,7 +41,7 @@ export default function Hero() {
             <div className="tape-strip -top-3.5 left-8 w-28 h-6 rotate-[-4deg]" />
 
             <p className="font-mono text-xs md:text-sm text-[var(--ink)] mb-1 opacity-80">
-              <span className="font-bold text-[var(--stamp)]">/hɑːns ləˈkwɛs.tə/</span> : <em className="font-serif">noun.</em>
+              <span className="font-bold text-[var(--stamp)]">/hɑːns ləˈkwes.tə/</span> : <em className="font-serif">noun.</em>
             </p>
             <p className="font-mono text-sm md:text-base text-[var(--ink)] leading-relaxed mb-3">
               a full-stack developer, based in the Philippines, who ships systems institutions actually rely on: clinics, wallets, scrapers, and one very persistent 2048 game.
@@ -55,34 +59,6 @@ export default function Hero() {
                 verified student author
               </span>
             </div>
-          </div>
-
-          {/* Doodles & Badges */}
-          {/* Spiral Star 1 */}
-          <div className="absolute top-2 right-6 md:right-32 w-12 h-12 md:w-16 md:h-16 pointer-events-none animate-wiggle opacity-85">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M50 4 L58 42 L96 50 L58 58 L50 96 L42 58 L4 50 L42 42 Z"
-                stroke="var(--ink)"
-                strokeWidth="4"
-                strokeLinejoin="round"
-                fill="var(--paper)"
-              />
-              <circle cx="50" cy="50" r="8" fill="var(--acid)" stroke="var(--ink)" strokeWidth="2" />
-            </svg>
-          </div>
-
-          {/* Spiral Star 2 */}
-          <div className="hidden sm:block absolute top-12 right-2 md:right-16 w-8 h-8 pointer-events-none animate-wiggle-alt opacity-75">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M50 4 L58 42 L96 50 L58 58 L50 96 L42 58 L4 50 L42 42 Z"
-                stroke="var(--ink)"
-                strokeWidth="5"
-                strokeLinejoin="round"
-                fill="var(--acid)"
-              />
-            </svg>
           </div>
 
           {/* Interactive Spinning Vinyl Record Doodle */}

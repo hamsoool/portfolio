@@ -3,6 +3,7 @@
 import React from "react";
 import { ProjectData } from "./ProjectDossierModal";
 import { playTypewriterClick } from "./audio";
+import { ArchiveStickers } from "./CollageStickers";
 
 interface ArchiveSectionProps {
   onSelectProject: (project: ProjectData) => void;
@@ -12,6 +13,8 @@ interface ArchiveSectionProps {
 export const PROJECTS: ProjectData[] = [
   {
     id: "clinicka",
+    liveUrl: "https://clinicka.vercel.app/",
+    liveLabel: "Launch Clinic Portal ↗",
     fileNo: "no. 1 — flagship",
     title: "clinicka",
     tagline:
@@ -48,6 +51,8 @@ export const PROJECTS: ProjectData[] = [
   },
   {
     id: "phoenix-ewallet",
+    liveUrl: "https://phoenix-pay.vercel.app/",
+    liveLabel: "launch phoenix pay ↗",
     fileNo: "file no. 2",
     title: "phoenix e-wallet",
     tagline:
@@ -70,6 +75,8 @@ export const PROJECTS: ProjectData[] = [
   },
   {
     id: "glasshill-pansol",
+    liveUrl: "https://glasshill.vercel.app/",
+    liveLabel: "tour resort site ↗",
     fileNo: "file no. 3",
     title: "glasshill pansol",
     tagline: "A marketing site for a private hot-spring villa in Pansol, Calamba.",
@@ -117,6 +124,8 @@ export const PROJECTS: ProjectData[] = [
   },
   {
     id: "octane",
+    liveUrl: "https://project-octane.vercel.app/",
+    liveLabel: "explore fuel map ↗",
     fileNo: "file no. 5",
     title: "octane",
     tagline: "Fuel-price intelligence, mapped.",
@@ -138,6 +147,8 @@ export const PROJECTS: ProjectData[] = [
   },
   {
     id: "memoir",
+    liveUrl: "https://kathlovehans.vercel.app/",
+    liveLabel: "open photo journal ↗",
     fileNo: "file no. 6",
     title: "memoir",
     tagline: "A private, vintage-styled photo journal for two.",
@@ -170,6 +181,8 @@ export default function ArchiveSection({
       id="work"
       className="relative bg-[var(--paper)] py-14 md:py-24 border-b-2 border-[var(--ink)] transition-colors duration-200"
     >
+      {/* Editorial Scrapbook Framing Stickers (8-Bit Badge, Hazard Strip, Barcode Ticket) */}
+      <ArchiveStickers />
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         <div className="mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[var(--stamp)]">
@@ -238,6 +251,22 @@ export default function ArchiveSection({
               </ul>
 
               <div className="flex flex-wrap items-center gap-3">
+                {flagship.liveUrl && (
+                  <a
+                    href={flagship.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={playTypewriterClick}
+                    className="btn-brutal bg-[var(--acid)] text-[var(--ink)] text-xs font-bold inline-flex items-center gap-1.5"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                    {flagship.liveLabel}
+                  </a>
+                )}
                 <button
                   onClick={() => {
                     playTypewriterClick();
@@ -328,6 +357,18 @@ export default function ArchiveSection({
 
                   {/* Actions */}
                   <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-dashed border-[var(--ink)]/40">
+                    {proj.liveUrl && (
+                      <a
+                        href={proj.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={playTypewriterClick}
+                        className="btn-brutal bg-[var(--acid)] text-[var(--ink)] text-xs py-1 px-2.5 font-bold"
+                      >
+                        {proj.liveLabel}
+                      </a>
+                    )}
+
                     {proj.repoUrl && (
                       <a
                         href={proj.repoUrl}

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { AboutStickers } from "./CollageStickers";
 
 export default function AboutSection() {
   return (
@@ -9,6 +10,9 @@ export default function AboutSection() {
       id="about"
       className="relative bg-[var(--paper)] border-b-2 border-[var(--ink)] py-14 md:py-24 transition-colors duration-200"
     >
+      {/* Editorial Scrapbook Framing Stickers (Botanical Spider Lily, Cassette, Dictionary Slip) */}
+      <AboutStickers />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-start">
           {/* Circular Stamp & Reference Halftone Clipping */}

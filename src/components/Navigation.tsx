@@ -6,19 +6,15 @@ import { playTypewriterClick } from "./audio";
 interface NavigationProps {
   isNegativeTheme: boolean;
   onToggleTheme: () => void;
-  isAudioOn: boolean;
-  onToggleAudio: () => void;
-  isStampMode: boolean;
-  onToggleStampMode: () => void;
+  isAudioOn?: boolean;
+  onToggleAudio?: () => void;
+  isStampMode?: boolean;
+  onToggleStampMode?: () => void;
 }
 
 export default function Navigation({
   isNegativeTheme,
   onToggleTheme,
-  isAudioOn,
-  onToggleAudio,
-  isStampMode,
-  onToggleStampMode,
 }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -73,50 +69,20 @@ export default function Navigation({
             connect
           </a>
 
-          {/* Interactive Tools */}
+          {/* Separator */}
           <div className="h-5 w-[2px] bg-[var(--ink)]/30 mx-1" />
 
-          {/* Stamp Tool */}
-          <button
-            onClick={() => {
-              playTypewriterClick();
-              onToggleStampMode();
-            }}
-            className={`px-2.5 py-1 text-xs border-2 border-[var(--ink)] transition-colors ${
-              isStampMode
-                ? "bg-[var(--acid)] text-[var(--ink)] font-black brutal-shadow-sm"
-                : "bg-[var(--paper-2)] hover:bg-[var(--acid)]"
-            }`}
-            title="Toggle stamp tool to stamp anywhere"
-          >
-            STAMP {isStampMode ? "ON" : "OFF"}
-          </button>
-
-          {/* Audio FX */}
-          <button
-            onClick={() => {
-              playTypewriterClick();
-              onToggleAudio();
-            }}
-            className={`px-2.5 py-1 text-xs border-2 border-[var(--ink)] transition-colors ${
-              isAudioOn
-                ? "bg-[var(--acid)] text-[var(--ink)] font-black brutal-shadow-sm"
-                : "bg-[var(--paper-2)] hover:bg-[var(--acid)]"
-            }`}
-            title="Toggle typewriter & stamp sounds"
-          >
-            FX: {isAudioOn ? "ON" : "MUTE"}
-          </button>
-
-          {/* Xerox Negative Theme */}
+          {/* Xerox Negative Theme Toggle (Preserved & Configured) */}
           <button
             onClick={() => {
               playTypewriterClick();
               onToggleTheme();
             }}
-            className="px-2.5 py-1 text-xs border-2 border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--acid)] hover:text-[var(--ink)] transition-colors font-black"
-            title="Toggle Xerox Inverted Photocopy Theme"
+            className="px-3 py-1 text-xs border-2 border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--acid)] hover:text-[var(--ink)] transition-colors font-black tracking-wider flex items-center gap-1.5 brutal-shadow-xs cursor-pointer"
+            title={isNegativeTheme ? "Switch to standard paper theme" : "Invert to xerox negative photocopy theme"}
+            aria-label={isNegativeTheme ? "Switch to standard print theme" : "Switch to xerox negative theme"}
           >
+            <span className="inline-block w-2 h-2 rounded-full border border-current bg-current" />
             {isNegativeTheme ? "PRINT" : "XEROX"}
           </button>
         </div>
@@ -124,11 +90,15 @@ export default function Navigation({
         {/* Mobile controls & toggle button */}
         <div className="flex md:hidden items-center gap-2">
           <button
-            onClick={onToggleTheme}
-            className="text-[11px] font-mono px-2 py-1 border border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]"
-            title="Invert Xerox Theme"
+            onClick={() => {
+              playTypewriterClick();
+              onToggleTheme();
+            }}
+            className="text-xs font-mono font-black px-2.5 py-1 border-2 border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--acid)] hover:text-[var(--ink)] transition-colors tracking-wider"
+            title={isNegativeTheme ? "Switch to standard paper theme" : "Invert to xerox negative photocopy theme"}
+            aria-label={isNegativeTheme ? "Switch to standard print theme" : "Switch to xerox negative theme"}
           >
-            {isNegativeTheme ? "LIGHT" : "DARK"}
+            {isNegativeTheme ? "PRINT" : "XEROX"}
           </button>
 
           <button
@@ -180,25 +150,17 @@ export default function Navigation({
             connect
           </a>
 
-          <div className="flex items-center gap-2 pt-2 border-t border-[var(--ink)]/20">
+          <div className="pt-2 border-t border-[var(--ink)]/20">
             <button
               onClick={() => {
-                onToggleStampMode();
+                playTypewriterClick();
+                onToggleTheme();
                 setIsOpen(false);
               }}
-              className={`flex-1 py-1 text-xs border border-[var(--ink)] ${
-                isStampMode ? "bg-[var(--acid)] font-black" : "bg-[var(--paper-2)]"
-              }`}
+              className="w-full py-2 text-xs font-mono font-black border-2 border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--acid)] hover:text-[var(--ink)] transition-colors tracking-wider flex items-center justify-center gap-2"
             >
-              Stamp Tool ({isStampMode ? "Active" : "Ready"})
-            </button>
-            <button
-              onClick={onToggleAudio}
-              className={`flex-1 py-1 text-xs border border-[var(--ink)] ${
-                isAudioOn ? "bg-[var(--acid)] font-black" : "bg-[var(--paper-2)]"
-              }`}
-            >
-              Sound ({isAudioOn ? "On" : "Muted"})
+              <span className="inline-block w-2 h-2 rounded-full border border-current bg-current" />
+              <span>THEME: {isNegativeTheme ? "XEROX NEGATIVE (CLICK FOR PRINT)" : "STANDARD PRINT (CLICK FOR XEROX)"}</span>
             </button>
           </div>
         </div>

@@ -1,0 +1,47 @@
+{
+  "name": "hans lacuesta : developer, self-published",
+  "short_name": "Hans Lacuesta",
+  "description": "Portfolio of Hans Lacuesta, full-stack developer. Shipping resilient webapps for institutions: Clinicka, Phoenix E-Wallet, Glasshill Pansol, Soul Scraper, OCTANE, Memoir.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#EEE9DB",
+  "theme_color": "#AAB694",
+  "categories": [
+    "portfolio",
+    "developer",
+    "technology"
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

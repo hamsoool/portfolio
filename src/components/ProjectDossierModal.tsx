@@ -13,6 +13,8 @@ export interface ProjectData {
   lifecycle?: string[];
   techStack: string[];
   repoUrl?: string;
+  liveUrl?: string;
+  liveLabel?: string;
   isPrivate?: boolean;
   statusLabel?: string;
   iconSvg: React.ReactNode;
@@ -139,12 +141,24 @@ export default function ProjectDossierModal({
 
         {/* Footer Actions */}
         <div className="mt-8 pt-4 border-t-2 border-[var(--ink)] flex flex-wrap justify-between items-center gap-4">
-          <div>
-            {project.isPrivate ? (
-              <span className="border-1.5 border-dashed border-[var(--ink)] px-3 py-1 text-xs font-mono font-bold uppercase opacity-85">
-                {project.statusLabel || "Source Private : Institutional Deployment"}
-              </span>
-            ) : project.repoUrl ? (
+          <div className="flex flex-wrap items-center gap-3">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={playTypewriterClick}
+                className="btn-brutal bg-[var(--acid)] text-[var(--ink)] text-xs font-bold inline-flex items-center gap-1.5"
+              >
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                {project.liveLabel || "Launch Live Project ↗"}
+              </a>
+            )}
+            {project.repoUrl && (
               <a
                 href={project.repoUrl}
                 target="_blank"
@@ -154,7 +168,12 @@ export default function ProjectDossierModal({
               >
                 Inspect Repository ↗
               </a>
-            ) : null}
+            )}
+            {project.isPrivate && (
+              <span className="border-1.5 border-dashed border-[var(--ink)] px-3 py-1 text-xs font-mono font-bold uppercase opacity-85">
+                {project.statusLabel || "Source Private"}
+              </span>
+            )}
           </div>
 
           <div className="rubber-stamp text-xs rotate-[-2deg]">

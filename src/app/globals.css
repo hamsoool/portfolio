@@ -207,7 +207,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-100%); }
 }
 
 @keyframes bob {
@@ -230,10 +230,13 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 
 .animate-marquee {
   display: flex;
+  flex-shrink: 0;
   width: max-content;
-  animation: marquee-scroll 24s linear infinite;
+  animation: marquee-scroll 35s linear infinite;
+  will-change: transform;
 }
 
+.group:hover .animate-marquee,
 .animate-marquee:hover {
   animation-play-state: paused;
 }
@@ -282,4 +285,17 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Mobile-First Touch & PWA Safe Area Enhancements (Zero impact on desktop) */
+@supports (padding-top: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}
+
+html, body {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
